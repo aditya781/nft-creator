@@ -1,9 +1,9 @@
 const express = require('express');
-const ratingController = require('../../controllers/rating.controller');
+const nftController = require('../../controllers/nft.controller');
 
 const router = express.Router();
 
-router.get('/create_nft', ratingController.get_exp_rating);
+router.get('/create_nft', nftController.create_nft);
 
 
 

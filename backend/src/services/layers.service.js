@@ -2,7 +2,10 @@ const fs = require("fs");
 
 const { createCanvas, loadImage } = require("canvas");
 const console = require("console");
-
+const format = {
+    width: 400,
+    height: 480
+  };
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 
@@ -15,10 +18,7 @@ const layersOrder = [
   { name: 'deadwe', number: 2 }
 ];
 
-const format = {
-  width: 400,
-  height: 480
-};
+
 
 const rarity = [
   { key: "", val: "original" },
