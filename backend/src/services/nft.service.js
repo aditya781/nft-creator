@@ -1,4 +1,6 @@
 const fs = require("fs");
+const multer = require('multer')
+
 const { createCanvas, loadImage } = require("canvas");
 const console = require("console");
 const { layersOrder, format, rarity } = require("./config.service.js");
@@ -20,6 +22,21 @@ let hash = [];
 let decodedHash = [];
 const Exists = new Map();
 
+//storage
+const Storage = multer.diskStorage({
+  destination:`${process.env.PWD}/../uploads`,
+  filename: (req,file,cb)=>{
+    cb(null,file.originalname);
+  }
+});
+
+const upload = multer({
+  storage:Storage
+}).single('testImage')
+
+const create_nft= async(nftObject)=>{
+  
+};
 
 const addRarity = _str => {
   let itemRarity;
@@ -164,4 +181,9 @@ const createMetaData = () => {
   });
 };
 
-module.exports = { buildSetup, createFiles, createMetaData };
+module.exports = { 
+    buildSetup, 
+    createFiles, 
+    createMetaData,
+    create_nft
+ };
