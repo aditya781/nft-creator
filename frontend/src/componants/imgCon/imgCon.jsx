@@ -1,12 +1,15 @@
 import './imgCon.css';
 
 
-function imgCon() {
+function imgCon(props) {
   return (
     <div className="imgCon-container">
-        <img id='cross-img' alt='cross' src='./images/delete-cross.png'/>
-        <div className='image-container'></div>
-        
+       
+        <div className='image-container'>
+          <img className='image-card' alt='sdf' src={props.source}/>
+        </div>
+        {/*<div className='img-div'><img id='cross-img' alt='cross' src='./images/delete-cross.png'/></div>*/}
+       
   
     </div>
   );

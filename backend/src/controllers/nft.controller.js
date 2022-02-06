@@ -6,7 +6,7 @@ const { nftService} = require('../services');
 
 const create_nft = catchAsync(async (req, res) => { 
     const nftObject=req.body;
-    const nfts=await nftService.create_nft(nftObject);
+    const nfts=await nftService.create_nft(nftObject,req,res);
     res.status(httpStatus.OK).send(nfts);
 });
 

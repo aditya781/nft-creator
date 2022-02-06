@@ -3,7 +3,7 @@ const nftController = require('../../controllers/nft.controller');
 
 const router = express.Router();
 
-router.get('/create_nft', nftController.create_nft);
+router.post('/create_nft', nftController.create_nft);
 
 
 

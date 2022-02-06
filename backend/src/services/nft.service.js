@@ -3,8 +3,11 @@ const multer = require('multer');
 
 
 //storage
+//${process.env.PWD}/../layers
 const Storage = multer.diskStorage({
-  destination:`${process.env.PWD}/../layers`,
+  destination:(req,file,cb)=>{
+    cb(null,'public');
+  },
   filename: (req,file,cb)=>{
     cb(null,file.originalname);
   }
@@ -12,9 +15,16 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
   storage:Storage
-}).single('testImage')
+}).single('back')
 
-const create_nft= async(nftObject)=>{
+const create_nft= async(nftObject,req,res)=>{
+  console.log(nftObject)
+  upload(req,res,(err)=>{
+    if(err){
+      console.log("error= "+ err)
+    }
+    console.log("success")
+  })
   
 };
 
