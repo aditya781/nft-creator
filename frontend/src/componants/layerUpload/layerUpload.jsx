@@ -31,26 +31,34 @@ function LayerUpload() {
     })
   }
   
+  let formData = new FormData();
+  let layersOrder = []
   function onSubmit(e){
     e.preventDefault();
-    //const data = new FormData();
-    axios.post("http://localhost:3002/v1/nft/create_nft", allData).then((res)=>console.log("success")).catch((err)=>{console.log("error")})
+    
+    axios.post("http://localhost:3002/v1/nft/create_nft", formData).then((res)=>console.log("success")).catch((err)=>{console.log("error")})
+    axios.post("http://localhost:3002/v1/nft/create_nft", layersOrder).then((res)=>{
+      console.log("success")
+    }).catch((err)=>{console.log("error")})
+    
+    //formData = new FormData();
   }
   
   function getFiles(fname, lname){
-    const obj={files:fname, lName:lname};
-    let formData = new FormData();
-    formData.append("back",fname[0])
-    console.log("data")
-    
-    console.log(formData.back)
-    allData=formData
+    let temp = []
+    for(let i=0; i<fname.length; i++){
+      formData.append("back",fname[i]);
+      temp.push(fname[i].name)
+    }
+    layersOrder.push({name:lname, files:temp})
+    console.log(fname)
+    //allData=formData
     
   }
 
   return (
     <div>
-      <form method='post' onSubmit={onSubmit} encType='multipart/form-data'>
+      <form  method='post' onSubmit={onSubmit} encType='multipart/form-data'>
         <div className="layer-container">
           <div className='upload-card-header'><span>UPLOAD</span> ALL LAYERS</div>
           <div className='steps-container'>

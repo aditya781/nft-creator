@@ -9,16 +9,16 @@ const format = {
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 
-const defaultEdition = 100;
-
+const defaultEdition = 10;
+/*
 const layersOrder = [
   { name: 'background', number: 9 },
   { name: 'deadface', number: 4 },
   { name: 'deadeye', number: 5 },
   { name: 'deadwe', number: 2 }
-];
+];*/
 
-
+let layersOrder = []
 
 const rarity = [
   { key: "", val: "original" },
@@ -31,9 +31,11 @@ if (!process.env.PWD) {
   process.env.PWD = process.cwd();
 }
 
-const buildDir = `${process.env.PWD}/../build`;
+//const buildDir = `${process.env.PWD}/../build`;
+const buildDir = `build`;
 const metDataFile = '_metadata.json';
-const layersDir = `${process.env.PWD}/../layers`;
+//const layersDir = `${process.env.PWD}/../layers`;
+const layersDir = `public`;
 
 let metadata = [];
 let attributes = [];
@@ -185,11 +187,13 @@ const addRarity = _str => {
     });
   };
 
-const createConfig = async()=>{
-
+const createConfig = async(newLayers)=>{
+  for (let i=0; i<newLayers.length; i++){
+    layersOrder.push({name:newLayers[i].name, number:newLayers[i].files.length})
+  }
 }
-const createNFT = async()=>{
-    await createConfig;
+const createNFT = async(newLayers)=>{
+    await createConfig(newLayers);
     const myArgs = process.argv.slice(2);
     const edition = myArgs.length > 0 ? Number(myArgs[0]) : defaultEdition;
     buildSetup();
