@@ -10,7 +10,8 @@ function LayerUpload() {
  
   const [layers, setLayersArray] = React.useState([]);
   const [layerName, setLayerName] = React.useState(null);
-  let allData=[];
+  let formData = new FormData();
+  let layersOrder = []
 
   function onLayerChange(event){
     let newLayer = event.target.value
@@ -31,12 +32,19 @@ function LayerUpload() {
     })
   }
   
-  let formData = new FormData();
-  let layersOrder = []
+  async function postFormData(formData){
+    await axios.post("http://localhost:3002/v1/nft/create_nft", formData)
+  }
+
+  
   function onSubmit(e){
     e.preventDefault();
     
-    axios.post("http://localhost:3002/v1/nft/create_nft", formData).then((res)=>console.log("success")).catch((err)=>{console.log("error")})
+    console.log(layersOrder)
+    console.log(formData)
+    
+    postFormData(formData)
+    //postlayersOrder(layersOrder)
     axios.post("http://localhost:3002/v1/nft/create_nft", layersOrder).then((res)=>{
       console.log("success")
     }).catch((err)=>{console.log("error")})
@@ -69,11 +77,11 @@ function LayerUpload() {
                     <img onClick={addLayer} alt='addimg' src='./images/add.png'/>
                   </div>
 
-                  {layers.map((layerEle)=>{return  <LayerName name={layerEle} deleteLayer={deleteLayer}/>})}
+                  {layers.map((layerEle)=>{return  <LayerName key={layerEle} name={layerEle} deleteLayer={deleteLayer}/>})}
               </div>
               <div className='step-2' id='step-2'>
                   <div className='step-header' id='step-2-header'>Step-02</div>
-                  {layers.map((layerEle)=>{return  <InputLayer fileNames={getFiles} name={layerEle}/>})}
+                  {layers.map((layerEle)=>{return  <InputLayer key={layerEle} fileNames={getFiles} name={layerEle}/>})}
                   
                  
                   

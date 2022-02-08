@@ -18,7 +18,7 @@ const Storage = multer.diskStorage({
 
 const upload = multer({
   storage:Storage
-}).array('back',20)
+}).array('back',100)
 
 const create_nft= async(nftObject,req,res)=>{
   
@@ -33,7 +33,7 @@ const create_nft= async(nftObject,req,res)=>{
     await manage_dir(nftObject);
     await createNFT(nftObject);
 
-    const zip = new AdmZip();
+   /* const zip = new AdmZip();
     let uploadDir = fsa.readdirSync("build");
     for(let i=0; i<uploadDir.length; i++){
       zip.addLocalFile("build/"+uploadDir[i]);
@@ -47,7 +47,7 @@ const create_nft= async(nftObject,req,res)=>{
     
     // code to download zip file
  
-    return data;
+    return data;*/
   }
   
 };

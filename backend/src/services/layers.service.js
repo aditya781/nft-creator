@@ -3,13 +3,14 @@ const fs = require("fs");
 const { createCanvas, loadImage } = require("canvas");
 const console = require("console");
 const format = {
-    width: 400,
-    height: 480
+    width: 200,
+    height: 200
   };
+  //400*480
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 
-const defaultEdition = 10;
+const defaultEdition = 50;
 /*
 const layersOrder = [
   { name: 'background', number: 9 },
@@ -94,7 +95,7 @@ const addRarity = _str => {
   
   const buildSetup = () => {
     if (fs.existsSync(buildDir)) {
-      fs.rmdirSync(buildDir, { recursive: true });
+      fs.rmSync(buildDir, { recursive: true });
     }
     fs.mkdirSync(buildDir);
   };

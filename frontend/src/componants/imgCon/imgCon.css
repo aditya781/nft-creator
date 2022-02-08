@@ -1,7 +1,9 @@
 .imgCon-container{
     background-color: antiquewhite;
     width: fit-content;
+    margin: 0.5rem;
     margin-top: 1rem;
+    float: left;
 }
 .image-container{
     width: 7rem;

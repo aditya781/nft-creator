@@ -15,7 +15,7 @@ const modifyDir = async (src, dest) => {
       await fsa.move(src, dest)
       console.log('move success!')
     } catch (err) {
-        await remove(src);
+        //await remove(src);
     }
   }
 
